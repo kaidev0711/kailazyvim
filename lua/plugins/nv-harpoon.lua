@@ -1,19 +1,25 @@
 return {
   {
     "ThePrimeagen/harpoon",
+    lazy = true,
     event = "BufRead",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
     },
     keys = {
       {
-        "<leader>fh",
+        "<leader>fm",
         "<cmd>Telescope harpoon marks<cr>",
         desc = "Telescope Harpoon Marks",
       },
     },
-    opts = {},
-    config = function(_, options)
+    opts = {
+      global_settings = {
+        save_on_toggle = true,
+        enter_on_sendcmd = true,
+      },
+    },
+    config = function(_, optionsj)
       local status_ok, harpoon = pcall(require, "harpoon")
       if not status_ok then
         return
